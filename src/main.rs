@@ -1,5 +1,5 @@
 use rand::Rng;
-use std::io;
+use std::{io, cmp::Ordering};
 
 fn main() {
     guess_the_number();
@@ -17,4 +17,10 @@ fn guess_the_number() {
 
     println!("The magic number is {magic_number}");
     println!("Your guess was {guess}");
+
+    match guess.cmp(&magic_number){
+        Ordering::Less => println!("Too small"),
+        Ordering::Greater => println!("Too big"),
+        Ordering::Equal => println!("You got it!")
+    }
 }
