@@ -1,5 +1,5 @@
 use rand::Rng;
-use std::{io, cmp::Ordering};
+use std::{cmp::Ordering, io};
 
 fn main() {
     guess_the_number();
@@ -15,12 +15,13 @@ fn guess_the_number() {
         .read_line(&mut guess)
         .expect("Failed to read line!");
 
+    let guess: i32 = guess.trim().parse().expect("Please enter a number");
     println!("The magic number is {magic_number}");
     println!("Your guess was {guess}");
 
-    match guess.cmp(&magic_number){
+    match guess.cmp(&magic_number) {
         Ordering::Less => println!("Too small"),
         Ordering::Greater => println!("Too big"),
-        Ordering::Equal => println!("You got it!")
+        Ordering::Equal => println!("You got it!"),
     }
 }
