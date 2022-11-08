@@ -18,7 +18,10 @@ fn guess_the_number() {
             .read_line(&mut guess)
             .expect("Failed to read line!");
 
-        let guess: i32 = guess.trim().parse().expect("Please enter a number");
+        let guess: i32 = match guess.trim().parse(){
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
         println!("The magic number is {magic_number}");
         println!("Your guess was {guess}");
